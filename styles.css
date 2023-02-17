@@ -1,89 +1,121 @@
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500&display=swap");
 
 * {
-    font-family: 'Vazirmatn', sans-serif;
-    user-select: none;
+  font-family: "Vazirmatn", sans-serif;
+  user-select: none;
 }
 
 body {
-    background-color: #a2c0a2;
+  background-color: white;
 }
 
 .start {
-    text-align: center;
-    padding-top: 110px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 0);
+  text-align: center;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
 }
 
 .start input {
-    border-color: rgb(5, 85, 5);
-    border-width: 2px;
-    outline: none;
-    text-align: center;
-    border-radius: 5px;
+  border-color: #14a093;
+  border-width: 2px;
+  outline: none;
+  text-align: center;
+  border-radius: 5px;
 }
 
 .start button {
-    text-align: center;
-    margin: 50px;
-    width: 150px;
-    outline: none;
-    transform: scale(2);
-    border: none;
-    border-radius: 5px;
-    height: 30px;
-    background-color: rgb(5, 85, 5);
-    color: white;
+  text-align: center;
+  margin: 50px;
+  width: 150px;
+  outline: none;
+  transform: scale(2);
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  background-color: #14a093;
+  color: white;
 }
 
 .start h1 {
-    font-size: 20px;
+  color: #143d43;
+  font-size: 20px;
 }
 
-
 body header {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  margin: 0;
 }
 
 header img {
-    max-width: 250px;
+  max-width: 250px;
+  transform: scale(0.6);
 }
 
 .info {
-    color: white;
-    text-align: center;
-    background-color: rgb(5, 85, 5);
-    border-radius: 15px;
-    font-size: 10px;
+  color: white;
+  text-align: center;
+  background-image: linear-gradient(to bottom right, #143d43, #14a093);
+  border-radius: 15px;
+  font-size: 10px;
 }
+
 .info h1 {
-    padding-top: 15px;
-    font-size: 16px;
-    font-weight: 100;
+  padding-top: 10px;
+  font-size: 16px;
+  font-weight: 100;
 }
 
 .info hr {
-    height: 2px;
-    width: 70%;
-    background-color: white;
-    border: none;
-    outline: none;
-    border-radius: 15px;
+  height: 2px;
+  width: 70%;
+  background-color: white;
+  border: none;
+  outline: none;
+  border-radius: 15px;
 }
 
 li {
-    padding-left: 4%;
-    padding-right: 5%;
-    padding-bottom: 2%;
-    direction: rtl;
-    text-align: right;
+  padding-left: 4%;
+  padding-right: 5%;
+  padding-bottom: 3%;
+  direction: rtl;
+  text-align: right;
 }
 
+.name {
+  max-width: 200px;
+}
+
+.logo {
+  max-width: 50px;
+  transform: scale(2);
+}
+
+.head {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.head2 {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  transform: translate(0, 70%);
+  left: 0;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
