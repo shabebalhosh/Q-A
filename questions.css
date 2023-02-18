@@ -1,20 +1,47 @@
+/* Style the quiz container */
 body {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
-.prompt {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+#quiz-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  max-width: 500px;
 }
 
-.question {
-  background-color: #143d43;
-  max-width: fit-content;
+/* Style the question title */
+.question-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
 }
 
-.question h3 {
+/* Style the answer options */
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* Style the "Submit Answer" button */
+button[type="submit"] {
+  background-color: #4caf50;
   color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Style the results container */
+#results-container {
+  margin: 0 auto;
+  max-width: 500px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
 }
