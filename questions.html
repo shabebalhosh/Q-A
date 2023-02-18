@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quiz</title>
+    <style>
+      #quiz-container > div {
+        display: none;
+      }
+      #quiz-container > div:first-child {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="quiz-container">
+      <div id="q1">
+        <h2>Question 1</h2>
+        <p>What is the capital of France?</p>
+        <input type="radio" name="q1" value="a" id="q1a" />
+        <label for="q1a">a) London</label><br />
+        <input type="radio" name="q1" value="b" id="q1b" />
+        <label for="q1b">b) Paris</label><br />
+        <input type="radio" name="q1" value="c" id="q1c" />
+        <label for="q1c">c) Madrid</label><br />
+        <button onclick="checkAnswer('q1')">Submit Answer</button>
+      </div>
+      <div id="q2">
+        <h2>Question 2</h2>
+        <p>What is the largest planet in our solar system?</p>
+        <input type="radio" name="q2" value="a" id="q2a" />
+        <label for="q2a">a) Mars</label><br />
+        <input type="radio" name="q2" value="b" id="q2b" />
+        <label for="q2b">b) Jupiter</label><br />
+        <input type="radio" name="q2" value="c" id="q2c" />
+        <label for="q2c">c) Saturn</label><br />
+        <button onclick="checkAnswer('q2')">Submit Answer</button>
+      </div>
+      <div id="q3">
+        <h2>Question 3</h2>
+        <p>What is the smallest country in the world?</p>
+        <input type="radio" name="q3" value="a" id="q3a" />
+        <label for="q3a">a) Vatican City</label><br />
+        <input type="radio" name="q3" value="b" id="q3b" />
+        <label for="q3b">b) Monaco</label><br />
+        <input type="radio" name="q3" value="c" id="q3c" />
+        <label for="q3c">c) San Marino</label><br />
+        <button onclick="checkAnswer('q3')">Submit Answer</button>
+      </div>
+    </div>
+    <div id="results-container" style="display: none">
+      <h2>Results</h2>
+      <p id="name-result"></p>
+      <p id="score-result"></p>
+    </div>
+    <script>
+      let name = "";
+      let score = 0;
+      let currentQuestion = 1;
+
+      function showQuestion(qid) {
+        document.getElementById(qid).style.display = "block";
+      }
+
+      function hideQuestion(qid) {
+        document.getElementById(qid).style.display = "none";
+      }
+
+      function checkAnswer(qid) {
+        const radios = document.getElementsByName(qid);
+        let selected = false;
+        for (let i = 0; i < radios.length; i++) {
+          if (radios[i].checked) {
+            selected = true;
+            if (radios[i].value === "b") {
+              score += 2;
+              alert("Correct!");
+            } else {
+              alert("Incorrect!");
+            }
+            hideQuestion(qid);
+            currentQuestion++;
+            if (currentQuestion > 3) {
+              showResults();
+            } else {
+              showQuestion("q" + currentQuestion);
+            }
+            break;
+          }
+        }
+        if (!selected) {
+          alert("Please select an answer.");
+        }
+      }
+
+      function showResults() {
+        hideQuestion("quiz-container");
+        showQuestion("results-container");
+        document.getElementById("name-result").textContent = "Name: " + name;
+        document.getElementById("score-result").textContent = "Score: " + score;
+      }
+
+      name = prompt("Please enter your name:");
+      showQuestion("q1");
+    </script>
+  </body>
+</html>

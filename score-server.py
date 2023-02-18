@@ -1,19 +1,14 @@
 from flask import Flask, request
+import json
 
 app = Flask(__name__)
 
-SCORES_FILE = 'LeaderBoard.txt'
-
-@app.route('/score', methods=['POST'])
-def receive_score():
-    score = request.form['score']
-    name = request.form['name']
-
-    # write the score and name to the file
-    with open(SCORES_FILE, 'a') as f:
-        f.write(f'{name} {score}\n')
-
-    return 'Data Recieved'
+@app.route('/submit-score', methods=['POST'])
+def submit_score():
+    data = request.get_json()
+    with open('scores.txt', 'a') as f:
+        f.write(json.dumps(data) + '\n')
+    return 'Score submitted'
 
 if __name__ == '__main__':
     app.run()
