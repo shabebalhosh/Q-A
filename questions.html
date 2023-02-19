@@ -12,6 +12,12 @@
       }
     </style>
     <link rel="stylesheet" href="questions.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-xy8A2HmIaiCwHI0p0zvF8yxy+55eoXzd3KjKopOosnyxWZMWGSmxdjKMTQOcr7rEG8NzPJ+X9q1jMkgfKPgZJg=="
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <div id="quiz-container">
@@ -19,11 +25,11 @@
         <h2>Question 1</h2>
         <p>What is the capital of France?</p>
         <input type="radio" name="q1" value="a" id="q1a" />
-        <label for="q1a">a) London</label><br />
+        <label for="q1a">London</label>
         <input type="radio" name="q1" value="b" id="q1b" />
-        <label for="q1b">b) Paris</label><br />
+        <label for="q1b">Paris</label>
         <input type="radio" name="q1" value="c" id="q1c" />
-        <label for="q1c">c) Madrid</label><br />
+        <label for="q1c">Madrid</label><br /><br />
         <button onclick="checkAnswer('q1')">Submit Answer</button>
       </div>
       <div id="q2">
@@ -55,7 +61,8 @@
       <p id="score-result"></p>
     </div>
     <script>
-      let name = "";
+      const urlParams = new URLSearchParams(window.location.search);
+      const name = urlParams.get("name");
       let score = 0;
       let currentQuestion = 1;
 
@@ -100,7 +107,6 @@
         document.getElementById("name-result").textContent = "Name: " + name;
         document.getElementById("score-result").textContent = "Score: " + score;
       }
-      name = prompt("Please enter your name:");
       showQuestion("q1");
     </script>
   </body>

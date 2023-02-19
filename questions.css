@@ -1,40 +1,42 @@
-/* Style the quiz container */
+@import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500&display=swap");
+
+* {
+  font-family: "Vazirmatn", sans-serif;
+  user-select: none;
+}
+
 body {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 #quiz-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  max-width: 500px;
-}
-
-/* Style the question title */
-.question-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 20px;
+  font-size: 60px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 800px;
 }
 
 /* Style the answer options */
 label {
   display: block;
   margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 60px;
 }
 
 /* Style the "Submit Answer" button */
-button[type="submit"] {
-  background-color: #4caf50;
+button {
+  background-color: #14a093;
+  transform: scale(4);
   color: white;
-  padding: 10px 20px;
+  padding: 10px 60px;
+  outline: none;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
-  margin-top: 20px;
 }
 
 /* Style the results container */
