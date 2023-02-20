@@ -1,113 +1,103 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
     <title>Quiz</title>
-    <style>
-      #quiz-container > div {
-        display: none;
-      }
-      #quiz-container > div:first-child {
-        display: block;
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="questions.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-      integrity="sha512-xy8A2HmIaiCwHI0p0zvF8yxy+55eoXzd3KjKopOosnyxWZMWGSmxdjKMTQOcr7rEG8NzPJ+X9q1jMkgfKPgZJg=="
-      crossorigin="anonymous"
-    />
   </head>
   <body>
-    <div id="quiz-container">
-      <div id="q1">
-        <h2>Question 1</h2>
-        <p>What is the capital of France?</p>
-        <input type="radio" name="q1" value="a" id="q1a" />
-        <label for="q1a">London</label>
-        <input type="radio" name="q1" value="b" id="q1b" />
-        <label for="q1b">Paris</label>
-        <input type="radio" name="q1" value="c" id="q1c" />
-        <label for="q1c">Madrid</label><br /><br />
-        <button onclick="checkAnswer('q1')">Submit Answer</button>
-      </div>
-      <div id="q2">
-        <h2>Question 2</h2>
-        <p>What is the largest planet in our solar system?</p>
-        <input type="radio" name="q2" value="a" id="q2a" />
-        <label for="q2a">a) Mars</label><br />
-        <input type="radio" name="q2" value="b" id="q2b" />
-        <label for="q2b">b) Jupiter</label><br />
-        <input type="radio" name="q2" value="c" id="q2c" />
-        <label for="q2c">c) Saturn</label><br />
-        <button onclick="checkAnswer('q2')">Submit Answer</button>
-      </div>
-      <div id="q3">
-        <h2>Question 3</h2>
-        <p>What is the smallest country in the world?</p>
-        <input type="radio" name="q3" value="a" id="q3a" />
-        <label for="q3a">a) Vatican City</label><br />
-        <input type="radio" name="q3" value="b" id="q3b" />
-        <label for="q3b">b) Monaco</label><br />
-        <input type="radio" name="q3" value="c" id="q3c" />
-        <label for="q3c">c) San Marino</label><br />
-        <button onclick="checkAnswer('q3')">Submit Answer</button>
-      </div>
-    </div>
-    <div id="results-container" style="display: none">
-      <h2>Results</h2>
-      <p id="name-result"></p>
-      <p id="score-result"></p>
-    </div>
+    <div id="question"></div>
+
+    <div class="timer" id="timer"></div>
+
+    <div id="choices"></div>
+
+    <button id="submit">تأكيد الإجابة</button>
+
+    <div id="score"></div>
+
     <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const name = urlParams.get("name");
-      let score = 0;
-      let currentQuestion = 1;
 
-      function showQuestion(qid) {
-        document.getElementById(qid).style.display = "block";
-      }
+      var questions = [
+        {
+          question: ".....",
+          choices: [".......", ".......", "............."],
+          answer: ".......",
+        },
+        {
+          question: "Test",
+          choices: ["4", "5", "6"],
+          answer: "4",
+        },
+      ];
 
-      function hideQuestion(qid) {
-        document.getElementById(qid).style.display = "none";
-      }
+      var numQuestions = 30;
 
-      function checkAnswer(qid) {
-        const radios = document.getElementsByName(qid);
-        let selected = false;
-        for (let i = 0; i < radios.length; i++) {
-          if (radios[i].checked) {
-            selected = true;
-            if (radios[i].value === "b") {
-              score += 2;
-              alert("Correct!");
-            } else {
-              alert("Incorrect!");
-            }
-            hideQuestion(qid);
-            currentQuestion++;
-            if (currentQuestion > 3) {
-              showResults();
-            } else {
-              showQuestion("q" + currentQuestion);
-            }
-            break;
-          }
+      var pointsPerAnswer = 2;
+
+      var currentQuestion = 0;
+      var score = 0;
+
+      var displayedQuestions = [];
+
+      function displayQuestion() {
+        if (displayedQuestions.length === questions.length) {
+          document.getElementById("question").innerHTML = "Quiz complete!";
+          document.getElementById("choices").innerHTML = "";
+          document.getElementById("submit").style.display = "none";
+          document.getElementById("score").innerHTML = "Your score: " + score;
+          return;
         }
-        if (!selected) {
-          alert("Please select an answer.");
+
+        var randomQuestion;
+        do {
+          randomQuestion =
+            questions[Math.floor(Math.random() * questions.length)];
+        } while (displayedQuestions.indexOf(randomQuestion) !== -1);
+
+        displayedQuestions.push(randomQuestion);
+
+        document.getElementById("question").innerHTML = randomQuestion.question;
+
+        var choicesHTML = "";
+        for (var i = 0; i < randomQuestion.choices.length; i++) {
+          choicesHTML +=
+            "<input type='radio' name='choice' value='" +
+            randomQuestion.choices[i] +
+            "'>" +
+            randomQuestion.choices[i] +
+            "<br>";
+        }
+        document.getElementById("choices").innerHTML = choicesHTML;
+      }
+
+      function checkAnswer() {
+        var selectedAnswer = document.querySelector(
+          'input[name="choice"]:checked'
+        ).value;
+
+        var correctAnswer = displayedQuestions[currentQuestion].answer;
+
+        if (selectedAnswer === correctAnswer) {
+          score += pointsPerAnswer;
+        }
+
+        currentQuestion++;
+
+        if (currentQuestion < numQuestions) {
+          displayQuestion();
+        } else {
+          document.getElementById("question").innerHTML = "Quiz complete!";
+          document.getElementById("choices").innerHTML = "";
+          document.getElementById("submit").style.display = "none";
+          document.getElementById("score").innerHTML = "Your score: " + score;
         }
       }
 
-      function showResults() {
-        hideQuestion("quiz-container");
-        showQuestion("results-container");
-        document.getElementById("name-result").textContent = "Name: " + name;
-        document.getElementById("score-result").textContent = "Score: " + score;
-      }
-      showQuestion("q1");
+      displayQuestion();
+
+      document.getElementById("submit").addEventListener("click", checkAnswer);
     </script>
   </body>
 </html>

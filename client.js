@@ -1,14 +1,27 @@
-const name = 'محمد هاشم'; // replace with your name
-const score = 1000; // replace with your actual score data
-const url = 'http://127.0.0.1:5000/score'; // replace with your server URL
+const express = require("express");
+const bodyParser = require("body-parser");
 
-fetch(url, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded'
-  },
-  body: `name=${name}&score=${score}`
-})
-.then(response => response.text())
-.then(data => console.log(data))
-.catch(error => console.error(error))
+const app = express();
+app.use(bodyParser.json());
+
+app.post("/submit-form", (req, res) => {
+  // Process the form data here
+  const formData = req.body;
+
+  // Simulate processing time
+  setTimeout(() => {
+    const success = Math.random() < 0.5; // Simulate success/failure
+
+    if (success) {
+      // Send a success response
+      res.status(200).json({ success: true });
+    } else {
+      // Send an error response
+      res.status(500).json({ success: false, message: "An error occurred" });
+    }
+  }, 5000); // Simulate processing time of 5 seconds
+});
+
+app.listen(3000, () => {
+  console.log("Server started on port 3000");
+});

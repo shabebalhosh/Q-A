@@ -119,3 +119,18 @@ li {
   text-align: center;
   line-height: 50px;
 }
+
+input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.spinner {
+  z-index: 3;
+  background-color: #143d43;
+  height: 100%;
+  width: 100%;
+}
