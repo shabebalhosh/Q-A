@@ -3,39 +3,46 @@
 * {
   font-family: "Vazirmatn", sans-serif;
   user-select: none;
-  color: white;
 }
 
 body {
-  background-color: #2F3136;
+  background-color: white;
   margin: 0;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
 }
 
 #question {
   position: relative;
   top: 0;
+  bottom: 0;
   left: 0;
   transform: translate(-50%, -50%);
-  color: #143D43;
+  color: white;
   transform: scale(0.9);
-  padding: 15px;
+  padding: 10px;
   background-color: #14A093;
-  border-radius: 15px;
+  border-radius: 20px;
   font-size: 24px;
-  font-weight: bold;
   text-align: center;
 }
 
 #choices {
+  font-weight: bolder;
+  border: thick double #14A093;
+  border-radius: 15px;
+  color: #143D43;
+  padding-left: 0;
+  padding-right: 0;
   padding-top: 50px;
+  padding-bottom: 50px;
   text-align: start;
-  font-size: 14px;
-  margin-top: 80px;
+  font-size: 18px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-row-gap:60px;
+  grid-row-gap:80px;
   direction: rtl;
 }
 
@@ -54,14 +61,14 @@ label {
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0px auto;
-  width: 80%;
+  width: 50%;
   height: 8%;
   font-size: 16px;
   font-weight: bold;
   color: #fff;
   background-color: #14A093;
   border: none;
-  border-radius: 15px;
+  border-radius: 25px;
   cursor: pointer;
 }
 
@@ -72,7 +79,7 @@ label {
 }
 
 #score {
-  margin-top: 50px;
+  margin-top: 10px;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
@@ -83,18 +90,17 @@ input[type="radio"] {
   -moz-appearance: none;
   appearance: none;
   outline: none;
-  border: none;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   margin-right: 10px;
-  background-color: #2F3136;
+  background-color: white;
   border: 3px solid #14A093;
 }
 
 input[type="radio"]:checked {
   background-color: #14A093;
-  border-color: #14A093;
+  border-color: #143D43;
 }
 
 input,
@@ -105,14 +111,21 @@ a {
     -webkit-tap-highlight-color: transparent;
 }
 
-.timer {
-  background-color: #14A093;
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 50px;
-  color: #2F3136;
-  font-size: 12px;
-  text-align: center;
+#timer {
+  position: relative;
+  margin: 0 auto;
+  top: 70px;
+  left: 0%;
+  border-radius: 15px;
+  font-size: 6px;
+  font-weight: bolder;
+  width: 50px;
+  height: 30px;
+  background-color: white;
+  color: #143D43;
+  border: 3px solid #14A093;
+}
+
+#head-name {
+  max-width: 150px;
 }
