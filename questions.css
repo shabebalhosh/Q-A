@@ -112,12 +112,15 @@ a {
 }
 
 #timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   margin: 0 auto;
   top: 70px;
   left: 0%;
   border-radius: 15px;
-  font-size: 6px;
+  font-size: 18px;
   font-weight: bolder;
   width: 50px;
   height: 30px;

@@ -7,12 +7,10 @@
     <link rel="stylesheet" href="questions.css" />
   </head>
   <body>
-    <img id="head-name" src="media/name.png" alt="">
+    <img id="head-name" src="media/name.png" alt="" />
     <div id="question"></div>
 
-    <div id="timer">
-      <h1>0:10</h1>
-    </div>
+    <div id="timer"></div>
 
     <div id="choices"></div>
 
@@ -21,16 +19,19 @@
     <div id="score"></div>
 
     <script>
-
       var questions = [
         {
           question: "تجربة",
-          choices: ["الامام المهدي (عج)", "الامام الحسين (ع)", "الامام علي (ع)"],
+          choices: [
+            "الامام المهدي (عج)",
+            "الامام الحسين (ع)",
+            "الامام علي (ع)",
+          ],
           answer: "الامام المهدي (عج)",
         },
         {
           question: "تجربة 2",
-          choices: ["1","2","3"],
+          choices: ["1", "2", "3"],
           answer: "2",
         },
       ];
@@ -44,8 +45,29 @@
 
       var displayedQuestions = [];
 
+      var timer = null;
+      var timeLeft = 15;
+
+      function startTimer() {
+        timeLeft = 15;
+        timer = setInterval(function () {
+          document.getElementById("timer").innerHTML = timeLeft;
+          timeLeft--;
+          if (timeLeft < 0) {
+            clearInterval(timer);
+            checkAnswer();
+          }
+        }, 1000);
+      }
+
+      function stopTimer() {
+        clearInterval(timer);
+        document.getElementById("timer").innerHTML = "";
+      }
+
       function displayQuestion() {
         if (displayedQuestions.length === questions.length) {
+          stopTimer();
           document.getElementById("question").innerHTML = "Quiz complete!";
           document.getElementById("choices").innerHTML = "";
           document.getElementById("submit").style.display = "none";
@@ -73,16 +95,19 @@
             "<br>";
         }
         document.getElementById("choices").innerHTML = choicesHTML;
+
+        startTimer();
       }
 
       function checkAnswer() {
+        stopTimer();
+
         var selectedAnswer = document.querySelector(
           'input[name="choice"]:checked'
-        ).value;
-
+        );
         var correctAnswer = displayedQuestions[currentQuestion].answer;
 
-        if (selectedAnswer === correctAnswer) {
+        if (selectedAnswer && selectedAnswer.value === correctAnswer) {
           score += pointsPerAnswer;
         }
 
@@ -94,13 +119,26 @@
           document.getElementById("question").innerHTML = "Quiz complete!";
           document.getElementById("choices").innerHTML = "";
           document.getElementById("submit").style.display = "none";
+          document.getElementById("choices").style.display = "none";
           document.getElementById("score").innerHTML = "Your score: " + score;
         }
       }
 
+      function checkTimer() {
+        if (timeLeft === 0) {
+          callback();
+        } else {
+          setTimeout(function () {
+            waitForVarToBeZero(timeLeft, callback);
+          }, 100); // wait for 100ms before checking again
+        }
+      }
+      checkTimer(timeLeft, function () {
+        checkAnswer();
+      });
       displayQuestion();
 
-      document.getElementById("submit").addEventListener("click", checkAnswer);
+      document.getElementById("submit").addEventListener("click", checkTimer);
     </script>
   </body>
 </html>

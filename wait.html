@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الرجاء الإنتظار</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500&display=swap");
+
+      * {
+        font-family: "Vazirmatn", sans-serif;
+        user-select: none;
+      }
+
+      .wait {
+        margin-top: 50%;
+        position: relative;
+        bottom: 50%;
+        text-align: center;
+      }
+
+      .wait img {
+        max-width: 200px;
+      }
+
+      .wait h1 {
+        margin-top: -10px;
+      }
+
+      .header {
+        display: flex;
+        justify-content: center;
+      }
+      .header img {
+        max-width: 150px;
+      }
+    </style>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const name = urlParams.get("name");
+
+      const xhr = new XMLHttpRequest();
+      const url = "http://localhost:3000/save-name";
+      xhr.open("POST", url);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log("Name sent successfully");
+        }
+      };
+      const data = JSON.stringify({ name });
+      xhr.send(data);
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <img src="media/name.png" alt="" />
+    </div>
+    <div class="wait">
+      <img src="media/globe.gif" alt="" />
+      <h1>يرجى الإنتظار</h1>
+    </div>
+  </body>
+</html>
