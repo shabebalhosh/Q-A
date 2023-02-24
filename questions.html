@@ -14,11 +14,14 @@
 
     <div id="choices"></div>
 
-    <button id="submit">تأكيد الإجابة</button>
+    <!-- <button id="submit">تأكيد الإجابة</button> -->
 
     <div id="score"></div>
 
     <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const name = urlParams.get("name");
+
       var questions = [
         {
           question: "تجربة",
@@ -46,10 +49,10 @@
       var displayedQuestions = [];
 
       var timer = null;
-      var timeLeft = 15;
+      var timeLeft = 2;
 
       function startTimer() {
-        timeLeft = 15;
+        timeLeft = 2;
         timer = setInterval(function () {
           document.getElementById("timer").innerHTML = timeLeft;
           timeLeft--;
@@ -68,10 +71,13 @@
       function displayQuestion() {
         if (displayedQuestions.length === questions.length) {
           stopTimer();
-          document.getElementById("question").innerHTML = "Quiz complete!";
+          document.getElementById("question").innerHTML = "انتهت المسابقة !";
           document.getElementById("choices").innerHTML = "";
-          document.getElementById("submit").style.display = "none";
-          document.getElementById("score").innerHTML = "Your score: " + score;
+          document.getElementById("choices").style.display = "none";
+          document.getElementById("timer").style.display = "none";
+          document.getElementById("score").innerHTML =
+            "حظا موفقا " + name + "\n\n" + "رصيدك : " + score + " نقاط";
+          sendData();
           return;
         }
 
@@ -116,12 +122,36 @@
         if (currentQuestion < numQuestions) {
           displayQuestion();
         } else {
-          document.getElementById("question").innerHTML = "Quiz complete!";
+          document.getElementById("question").innerHTML = "انتهت المسابقة !";
           document.getElementById("choices").innerHTML = "";
-          document.getElementById("submit").style.display = "none";
           document.getElementById("choices").style.display = "none";
-          document.getElementById("score").innerHTML = "Your score: " + score;
+          document.getElementById("timer").style.display = "none";
+          document.getElementById("score").innerHTML =
+            "حظا موفقا " + name + "\n\n" + "رصيدك : " + score + " نقاط";
+          sendData();
         }
+      }
+
+      function sendData() {
+        const url = "http://localhost:5000/store-score"; // Replace with your server URL
+        const data = {
+          name: name,
+          score: score,
+        };
+
+        fetch(url, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            console.log("Data sent successfully:", response);
+          })
+          .catch((error) => {
+            console.error("Error sending data:", error);
+          });
       }
 
       function checkTimer() {
@@ -129,7 +159,7 @@
           callback();
         } else {
           setTimeout(function () {
-            waitForVarToBeZero(timeLeft, callback);
+            checkTimer(timeLeft, callback);
           }, 100); // wait for 100ms before checking again
         }
       }

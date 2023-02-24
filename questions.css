@@ -21,7 +21,7 @@ body {
   color: white;
   transform: scale(0.9);
   padding: 10px;
-  background-color: #14A093;
+  background-color: #14a093;
   border-radius: 20px;
   font-size: 24px;
   text-align: center;
@@ -29,9 +29,9 @@ body {
 
 #choices {
   font-weight: bolder;
-  border: thick double #14A093;
+  border: thick double #14a093;
   border-radius: 15px;
-  color: #143D43;
+  color: #143d43;
   padding-left: 0;
   padding-right: 0;
   padding-top: 50px;
@@ -42,7 +42,7 @@ body {
   margin-bottom: 50px;
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-row-gap:80px;
+  grid-row-gap: 80px;
   direction: rtl;
 }
 
@@ -54,7 +54,7 @@ label {
   margin-top: -7px;
 }
 
-#submit {
+/* #submit {
   display: block;
   position: absolute;
   bottom: 0;
@@ -66,22 +66,26 @@ label {
   font-size: 16px;
   font-weight: bold;
   color: #fff;
-  background-color: #14A093;
+  background-color: #14a093;
   border: none;
   border-radius: 25px;
   cursor: pointer;
-}
+} */
 
-#submit:hover {
-  background-color: #143D43;
+/* #submit:hover {
+  background-color: #143d43;
   outline: none;
-
-}
+} */
 
 #score {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -80px);
   margin-top: 10px;
   font-size: 24px;
   font-weight: bold;
+  color: #143d43;
   text-align: center;
 }
 
@@ -95,12 +99,12 @@ input[type="radio"] {
   height: 35px;
   margin-right: 10px;
   background-color: white;
-  border: 3px solid #14A093;
+  border: 3px solid #14a093;
 }
 
 input[type="radio"]:checked {
-  background-color: #14A093;
-  border-color: #143D43;
+  background-color: #14a093;
+  border-color: #143d43;
 }
 
 input,
@@ -108,7 +112,7 @@ textarea,
 button,
 select,
 a {
-    -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 }
 
 #timer {
@@ -125,8 +129,8 @@ a {
   width: 50px;
   height: 30px;
   background-color: white;
-  color: #143D43;
-  border: 3px solid #14A093;
+  color: #143d43;
+  border: 3px solid #14a093;
 }
 
 #head-name {
