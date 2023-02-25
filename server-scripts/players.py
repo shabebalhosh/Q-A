@@ -1,5 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
+import arabic_reshaper
 
 class RequestHandler(BaseHTTPRequestHandler):
     def log_message(self, format, *args):
@@ -28,10 +29,14 @@ class RequestHandler(BaseHTTPRequestHandler):
         data = json.loads(body)
 
         # Extract the name from the request body
-        name = data.get('name')
+        name = data.get('name') + ' انضم إلى المسابقة  !'
+
+        name_reshape = arabic_reshaper.reshape(name)
+
+        name_final = name_reshape[::-1]
 
         # Print the name to the console
-        print(f"{name} joined server!")
+        print(name_final)
 
 if __name__ == '__main__':
     server_address = ('', 8000)
