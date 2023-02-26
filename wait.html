@@ -21,11 +21,13 @@
       }
 
       .wait img {
-        max-width: 200px;
+        max-width: 160px;
       }
 
       .wait h1 {
         margin-top: -10px;
+        color: #143d43;
+        text-shadow: -1px -2px 3px#14A093;
       }
 
       .header {
@@ -36,22 +38,6 @@
         max-width: 150px;
       }
     </style>
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const name = urlParams.get("name");
-
-      const xhr = new XMLHttpRequest();
-      const url = "http://localhost:3000/save-name";
-      xhr.open("POST", url);
-      xhr.setRequestHeader("Content-Type", "application/json");
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          console.log("Name sent successfully");
-        }
-      };
-      const data = JSON.stringify({ name });
-      xhr.send(data);
-    </script>
   </head>
   <body>
     <div class="header">
@@ -59,7 +45,24 @@
     </div>
     <div class="wait">
       <img src="media/globe.gif" alt="" />
-      <h1>يرجى الإنتظار</h1>
+      <h1>يرجى الإنتظار لإكتمال عدد المشتركين</h1>
     </div>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const name = urlParams.get("name");
+
+      const socket = new WebSocket("ws://192.168.0.100:3000");
+
+      socket.onopen = function () {
+        console.log("Connected to server.");
+        socket.send({ name } + " joined the competition");
+      };
+
+      socket.onmessage = function (event) {
+        if (event.data === "start-comp") {
+          window.location.href = `questions.html?name=${name}`;
+        }
+      };
+    </script>
   </body>
 </html>
