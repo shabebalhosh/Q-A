@@ -51,6 +51,12 @@
       const urlParams = new URLSearchParams(window.location.search);
       const name = urlParams.get("name");
 
+      document.addEventListener("visibilitychange", function () {
+        if (document.visibilityState === "hidden") {
+          window.location.href = "sorry.html";
+        }
+      });
+
       const socket = new WebSocket("ws://192.168.0.100:3000");
 
       socket.onopen = function () {

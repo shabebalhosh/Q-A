@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="questions.css" />
   </head>
+  <script>
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "hidden") {
+        window.location.href = "sorry.html";
+      }
+    });
+  </script>
   <body>
     <img id="head-name" src="media/name.png" alt="" />
     <div id="question"></div>
