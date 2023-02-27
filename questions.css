@@ -14,7 +14,7 @@ body {
 
 #question {
   position: relative;
-  top: 0;
+  top: 70px;
   bottom: 0;
   left: 0;
   transform: translate(-50%, -50%);
@@ -28,6 +28,8 @@ body {
 }
 
 #choices {
+  position: relative;
+  transform: translate(0, 15%);
   font-weight: bolder;
   border: thick double #14a093;
   border-radius: 15px;
@@ -120,9 +122,10 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 99;
   position: relative;
   margin: 0 auto;
-  top: 70px;
+  top: 125px;
   left: 0%;
   border-radius: 15px;
   font-size: 18px;
@@ -136,4 +139,7 @@ a {
 
 #head-name {
   max-width: 150px;
+  position: absolute;
+  bottom: 0;
+  transform: translate(-50%);
 }
