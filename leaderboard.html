@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="shortcut icon"
+      href="media/ثلاثية الإنتظار.png"
+      type="image/x-icon"
+    />
+    <title>لائحة الفائزين</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500&display=swap");
+
+      * {
+        font-family: "Vazirmatn", sans-serif;
+        color: white;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+      }
+      .main {
+        background-color: #3f3359;
+        padding: 50px;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        border-radius: 30px;
+      }
+      table {
+        direction: rtl;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        text-align: center;
+        padding: 5px;
+      }
+      tr:nth-child(even) {
+        background-color: #261f35;
+      }
+      th {
+        background-color: #bf912e;
+        color: white;
+      }
+      .rank {
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+      .name {
+        font-size: 1.2em;
+      }
+      .score {
+        font-size: 1.2em;
+      }
+      header img {
+        max-width: 300px;
+      }
+
+      footer {
+        bottom: 0;
+        position: absolute;
+      }
+      footer img {
+        max-width: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <header><img src="media/ثلاثية الإنتظار.png" alt="" /></header>
+    <div class="main">
+      <h1>التَّصفيات</h1>
+      <table>
+        <tr>
+          <th>المرتبة</th>
+          <th>الإسم</th>
+          <th>عدد النقاط</th>
+        </tr>
+      </table>
+    </div>
+    <footer><img src="media/name.png" alt="" /></footer>
+    <script src="leaderboard.js" type="module"></script>
+  </body>
+</html>

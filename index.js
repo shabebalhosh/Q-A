@@ -8,7 +8,7 @@ nameForm.addEventListener("submit", function (event) {
 });
 
 document.getElementById("name").oninput = function () {
-  this.value = this.value.replace(/[^\s,A-Z]/gi, "");
+  this.value = this.value.replace(/[^\s,أ-ي]/gi, "");
 };
 
 nameForm.addEventListener("submit", (event) => {
