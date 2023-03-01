@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap');
 
 * {
-  font-family: "Vazirmatn", sans-serif;
+  font-family: 'Readex Pro', sans-serif;
   user-select: none;
 }
 
@@ -21,7 +21,7 @@ body {
   color: white;
   transform: scale(0.9);
   padding: 10px;
-  background-color: #14a093;
+  background-color: #3f3359;
   border-radius: 20px;
   font-size: 24px;
   text-align: center;
@@ -31,9 +31,9 @@ body {
   position: relative;
   transform: translate(0, 15%);
   font-weight: bolder;
-  border: thick double #14a093;
+  border: thick double #3f3359;
   border-radius: 15px;
-  color: #143d43;
+  color: #3f3359;
   padding-left: 0;
   padding-right: 0;
   padding-top: 50px;
@@ -88,8 +88,19 @@ label {
   width: 280px;
   font-size: 24px;
   font-weight: bold;
-  color: #143d43;
+  color: #3f3359;
   text-align: center;
+}
+
+.logo {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -20%);
+}
+
+.logo img {
+  max-width: 150px;
 }
 
 input[type="radio"] {
@@ -102,12 +113,12 @@ input[type="radio"] {
   height: 35px;
   margin-right: 10px;
   background-color: white;
-  border: 3px solid #14a093;
+  border: 3px solid #3f3359;
 }
 
 input[type="radio"]:checked {
-  background-color: #14a093;
-  border-color: #143d43;
+  background-color: #bf912e;
+  border-color: #3f3359;
 }
 
 input,
@@ -133,12 +144,12 @@ a {
   width: 50px;
   height: 30px;
   background-color: white;
-  color: #143d43;
-  border: 3px solid #14a093;
+  color: #3f3359;
+  border: 3px solid #bf912e;
 }
 
 #head-name {
-  max-width: 150px;
+  max-width: 90px;
   position: absolute;
   bottom: 0;
   transform: translate(-50%);

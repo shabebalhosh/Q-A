@@ -11,34 +11,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>الرجاء الإنتظار</title>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500&display=swap");
+      @import url('https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap');
 
-      * {
-        font-family: "Vazirmatn", sans-serif;
-        user-select: none;
-      }
+* {
+  font-family: 'Readex Pro', sans-serif;
+  user-select: none;
+}
 
       .wait {
-        margin-top: 50%;
-        position: relative;
-        bottom: 50%;
+        position: absolute;
+        bottom: 0;
+        top: 50%;
+        transform: translate(0, -40%);
         text-align: center;
       }
 
       .wait img {
-        max-width: 160px;
+        max-width: 130px;
       }
 
       .wait h1 {
         margin-top: -10px;
-        color: #143d43;
-        text-shadow: -1px -2px 3px#14A093;
+        color: #3f3359;
       }
     </style>
   </head>
   <body>
     <div class="wait">
-      <img src="media/globe.gif" alt="" />
+      <img src="media/27-globe-outline.gif" alt="" />
       <h1>يرجى الإنتظار لإكتمال عدد المشتركين</h1>
     </div>
     <script>
