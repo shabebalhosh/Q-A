@@ -33,7 +33,7 @@ document.getElementById("name").setAttribute("autocomplete", "off");
 nameForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const name = document.getElementById("name").value;
-  fetch("http://localhost:8000", {
+  fetch("http://192.168.0.100:8000", {
     method: "POST",
     body: JSON.stringify({ name }),
     headers: {

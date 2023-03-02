@@ -41,5 +41,5 @@ class RequestHandler(BaseHTTPRequestHandler):
 if __name__ == '__main__':
     server_address = ('', 8000)
     httpd = HTTPServer(server_address, RequestHandler)
-    print('Server running at http://localhost:8000')
+    print('Server running at http://192.168.0.100:8000')
     httpd.serve_forever()
