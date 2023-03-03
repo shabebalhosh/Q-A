@@ -8,6 +8,7 @@ import {
   set,
   get,
   child,
+  update,
 } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-database.js";
 const firebaseConfig = {
   apiKey: "AIzaSyArDynFiDleYc0pw5vOgFVlg57SaVDaodc",
@@ -22,7 +23,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-var numQuestions = 40;
+set(ref(db, "players/" + name), {
+  name: name,
+  score: 0,
+});
+
+var numQuestions = 5;
 
 var pointsPerAnswer = 2;
 
@@ -32,11 +38,13 @@ var score = 0;
 
 var displayedQuestions = [];
 
+var dateOfSubmitting = new Date();
+
 var timer = null;
-var timeLeft = 20;
+var timeLeft = 5;
 
 function startTimer() {
-  timeLeft = 20;
+  timeLeft = 5;
   timer = setInterval(function () {
     document.getElementById("timer").innerHTML = timeLeft;
     timeLeft--;
@@ -60,11 +68,7 @@ function displayQuestion() {
     document.getElementById("choices").style.display = "none";
     document.getElementById("timer").style.display = "none";
     document.getElementById("score").innerHTML =
-      "حظا موفقا " + name + "\n\n" + "رصيدك : " + score + " نقاط";
-    set(ref(db, "players/" + name), {
-      name: name,
-      score: score,
-    });
+      "لقد حصلت على عدد نقاط: " + score;
     return;
   }
 
@@ -96,15 +100,36 @@ function checkAnswer() {
 
   var selectedAnswer = document.querySelector('input[name="choice"]:checked');
   var correctAnswer = displayedQuestions[currentQuestion].answer;
-
+  currentQuestion++;
   if (selectedAnswer && selectedAnswer.value === correctAnswer) {
     score += pointsPerAnswer;
-  }
 
-  currentQuestion++;
+    get(child(ref(db), "players/" + name)).then((snapshot) => {
+      if (snapshot.exists()) {
+        update(ref(db, "players/" + name), {
+          score: snapshot.val().score + pointsPerAnswer,
+        });
+      }
+    });
+  }
 
   if (currentQuestion < numQuestions) {
     displayQuestion();
+
+    get(child(ref(db), "players/" + name)).then((snapshot) => {
+      if (snapshot.exists()) {
+        // Update player's score
+        update(ref(db, "players/" + name), {
+          questionsSolved: currentQuestion,
+        });
+      } else {
+        // Create new player record
+        set(ref(db, "players/" + name), {
+          name: name,
+          questionsSolved: currentQuestion,
+        });
+      }
+    });
   } else {
     document.getElementById("question").innerHTML = "انتهت المسابقة !";
     document.getElementById("choices").innerHTML = "";
@@ -112,9 +137,20 @@ function checkAnswer() {
     document.getElementById("timer").style.display = "none";
     document.getElementById("score").innerHTML =
       "حظا موفقا " + name + "\n\n" + "رصيدك : " + score + " نقاط";
-    set(ref(db, "players/" + name), {
-      name: name,
-      score: score,
+    get(child(ref(db), "players/" + name)).then((snapshot) => {
+      if (snapshot.exists()) {
+        // Update player's score
+        update(ref(db, "players/" + name), {
+          questionsSolved: currentQuestion,
+          dateOfSubmit: dateOfSubmitting,
+        });
+      } else {
+        // Create new player record
+        set(ref(db, "players/" + name), {
+          name: name,
+          questionsSolved: currentQuestion,
+        });
+      }
     });
   }
 }
