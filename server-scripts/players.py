@@ -29,14 +29,14 @@ class RequestHandler(BaseHTTPRequestHandler):
         data = json.loads(body)
 
         # Extract the name from the request body
-        name = data.get('name') + ' انضم إلى المسابقة  !'
+        name = data.get('name') + 'joined !'
 
         name_reshape = arabic_reshaper.reshape(name)
 
         name_final = name_reshape[::-1]
 
         # Print the name to the console
-        print(name_final)
+        print(name)
 
 if __name__ == '__main__':
     server_address = ('', 8000)
