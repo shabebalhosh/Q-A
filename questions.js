@@ -38,8 +38,11 @@ var score = 0;
 
 var displayedQuestions = [];
 
-var dateOfSubmitting = new Date();
-
+var now = new Date();
+var hours = now.getHours();
+var minutes = now.getMinutes();
+var seconds = now.getSeconds();
+var timeSubmitted = hours + ":" + minutes + ":" + seconds;
 var timer = null;
 var timeLeft = 5;
 
@@ -68,7 +71,7 @@ function displayQuestion() {
     document.getElementById("choices").style.display = "none";
     document.getElementById("timer").style.display = "none";
     document.getElementById("score").innerHTML =
-      "لقد حصلت على عدد نقاط: " + score;
+      "شكراً لمشاركتك في البطولة، انتظر حتى تصدر نتيجة المسابقة على الشاشة";
     return;
   }
 
@@ -120,13 +123,13 @@ function checkAnswer() {
       if (snapshot.exists()) {
         // Update player's score
         update(ref(db, "players/" + name), {
-          questionsSolved: currentQuestion,
+          stageOfQuestions: currentQuestion,
         });
       } else {
         // Create new player record
         set(ref(db, "players/" + name), {
           name: name,
-          questionsSolved: currentQuestion,
+          stageOfQuestions: currentQuestion,
         });
       }
     });
@@ -136,19 +139,19 @@ function checkAnswer() {
     document.getElementById("choices").style.display = "none";
     document.getElementById("timer").style.display = "none";
     document.getElementById("score").innerHTML =
-      "حظا موفقا " + name + "\n\n" + "رصيدك : " + score + " نقاط";
+      "شكراً لمشاركتك في البطولة، انتظر حتى تصدر نتيجة المسابقة على الشاشة";
     get(child(ref(db), "players/" + name)).then((snapshot) => {
       if (snapshot.exists()) {
         // Update player's score
         update(ref(db, "players/" + name), {
-          questionsSolved: currentQuestion,
-          dateOfSubmit: dateOfSubmitting,
+          stageOfQuestions: currentQuestion,
+          dateOfSubmit: timeSubmitted,
         });
       } else {
         // Create new player record
         set(ref(db, "players/" + name), {
           name: name,
-          questionsSolved: currentQuestion,
+          stageOfQuestions: currentQuestion,
         });
       }
     });
