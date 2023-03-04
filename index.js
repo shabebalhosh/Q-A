@@ -29,23 +29,3 @@ inputBox.addEventListener("focusout", function () {
 });
 
 document.getElementById("name").setAttribute("autocomplete", "off");
-
-nameForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const name = document.getElementById("name").value;
-  fetch("http://192.168.0.100:8000", {
-    method: "POST",
-    body: JSON.stringify({ name }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => {
-      if (response.ok) {
-        console.log("Name submitted successfully");
-      } else {
-        console.error("Failed to submit name");
-      }
-    })
-    .catch((error) => console.error(error));
-});

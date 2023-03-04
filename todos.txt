@@ -1,6 +1,0 @@
-20seconds for each question
-
-30questions chosen randomly for each player out of 50questions added in the system
-
-const urlParams = new URLSearchParams(window.location.search);
-      const name = urlParams.get("name");

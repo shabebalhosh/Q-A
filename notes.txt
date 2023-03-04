@@ -1,3 +1,0 @@
-padding is for what's inside the div
-
-margin is for the padding between the div and the parent
