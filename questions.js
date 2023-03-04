@@ -44,10 +44,10 @@ var minutes = now.getMinutes();
 var seconds = now.getSeconds();
 var timeSubmitted = hours + ":" + minutes + ":" + seconds;
 var timer = null;
-var timeLeft = 15;
+var timeLeft = 20;
 
 function startTimer() {
-  timeLeft = 15;
+  timeLeft = 20;
   timer = setInterval(function () {
     document.getElementById("timer").innerHTML = timeLeft;
     timeLeft--;
