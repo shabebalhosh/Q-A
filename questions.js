@@ -28,7 +28,7 @@ set(ref(db, "players/" + name), {
   score: 0,
 });
 
-var numQuestions = 5;
+var numQuestions = 40;
 
 var pointsPerAnswer = 2;
 
@@ -44,10 +44,10 @@ var minutes = now.getMinutes();
 var seconds = now.getSeconds();
 var timeSubmitted = hours + ":" + minutes + ":" + seconds;
 var timer = null;
-var timeLeft = 5;
+var timeLeft = 15;
 
 function startTimer() {
-  timeLeft = 5;
+  timeLeft = 15;
   timer = setInterval(function () {
     document.getElementById("timer").innerHTML = timeLeft;
     timeLeft--;
